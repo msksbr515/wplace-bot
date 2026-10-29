@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         wplace-bot
 // @namespace    https://github.com/SoundOfTheSky
-// @version      5.2.2
+// @version      5.2.2.1
 // @description  Bot to automate painting on website https://wplace.live
 // @author       SoundOfTheSky
 // @license      MPL-2.0
-// @homepageURL  https://github.com/SoundOfTheSky/wplace-bot
-// @updateURL    https://raw.githubusercontent.com/SoundOfTheSky/wplace-bot/refs/heads/main/dist.user.js
-// @downloadURL  https://raw.githubusercontent.com/SoundOfTheSky/wplace-bot/refs/heads/main/dist.user.js
+// @homepageURL  https://github.com/msksbr515/wplace-bot
+// @updateURL    https://raw.githubusercontent.com/msksbr515/wplace-bot/refs/heads/seven-seals/dist.user.js
+// @downloadURL  https://raw.githubusercontent.com/msksbr515/wplace-bot/refs/heads/seven-seals/dist.user.js
 // @run-at       document-start
 // @match        *://*.wplace.live/*
 // @grant        none
@@ -2062,6 +2062,934 @@ var style_default = `/* stylelint-disable declaration-no-important */
 }
 `;
 
+// src/seven-seals-positions.ts
+var SEVEN_SEALS_POSITIONS = [
+  [1284, 883],
+  [1466, 920],
+  [675, 1132],
+  [1643, 822],
+  [975, 951],
+  [1337, 885],
+  [1255, 696],
+  [1305, 626],
+  [1015, 955],
+  [1586, 947],
+  [1547, 885],
+  [441, 836],
+  [1050, 812],
+  [1586, 955],
+  [1263, 805],
+  [1807, 729],
+  [1167, 1022],
+  [681, 1191],
+  [762, 1104],
+  [1232, 1033],
+  [1236, 822],
+  [1695, 823],
+  [2018, 1262],
+  [1365, 804],
+  [1579, 1002],
+  [1190, 635],
+  [1105, 831],
+  [1663, 879],
+  [1243, 803],
+  [598, 719],
+  [439, 840],
+  [1485, 649],
+  [686, 1048],
+  [435, 843],
+  [1886, 1211],
+  [1690, 866],
+  [1321, 851],
+  [1252, 884],
+  [997, 990],
+  [1241, 807],
+  [608, 1073],
+  [1078, 815],
+  [605, 1030],
+  [1046, 816],
+  [1432, 821],
+  [1469, 950],
+  [389, 804],
+  [1479, 942],
+  [630, 986],
+  [495, 844],
+  [516, 726],
+  [1462, 860],
+  [1114, 1049],
+  [1411, 761],
+  [1452, 743],
+  [1207, 642],
+  [648, 1110],
+  [1100, 1070],
+  [628, 1002],
+  [1677, 772],
+  [1278, 623],
+  [1071, 955],
+  [1509, 865],
+  [1417, 819],
+  [532, 833],
+  [1405, 845],
+  [1211, 601],
+  [1186, 625],
+  [1205, 1019],
+  [1199, 1196],
+  [632, 990],
+  [1819, 1242],
+  [1607, 1038],
+  [1111, 622],
+  [1067, 604],
+  [670, 1189],
+  [928, 941],
+  [1130, 1221],
+  [1201, 637],
+  [1252, 799],
+  [427, 835],
+  [1690, 862],
+  [675, 976],
+  [1043, 984],
+  [1212, 935],
+  [636, 988],
+  [1194, 848],
+  [1062, 995],
+  [1182, 1185],
+  [1246, 974],
+  [1659, 1033],
+  [1291, 790],
+  [1209, 1181],
+  [568, 729],
+  [1117, 583],
+  [1715, 1042],
+  [1245, 1050],
+  [630, 1244],
+  [1214, 651],
+  [599, 1037],
+  [948, 969],
+  [776, 1091],
+  [720, 1135],
+  [1296, 1137],
+  [1754, 1017],
+  [1181, 1090],
+  [634, 995],
+  [1080, 999],
+  [1066, 812],
+  [936, 922],
+  [961, 985],
+  [1100, 626],
+  [1358, 619],
+  [1727, 773],
+  [1854, 1240],
+  [1157, 1058],
+  [1299, 865],
+  [1884, 1179],
+  [1690, 1219],
+  [1691, 995],
+  [1200, 1130],
+  [1165, 831],
+  [1613, 832],
+  [767, 1102],
+  [1448, 839],
+  [1183, 1110],
+  [1751, 755],
+  [1566, 895],
+  [1031, 815],
+  [1566, 931],
+  [1619, 884],
+  [1234, 900],
+  [1276, 1012],
+  [1289, 823],
+  [1592, 1019],
+  [1090, 828],
+  [1063, 970],
+  [1434, 892],
+  [443, 841],
+  [994, 824],
+  [1732, 768],
+  [998, 824],
+  [1108, 954],
+  [1241, 811],
+  [1317, 812],
+  [1603, 912],
+  [1215, 635],
+  [1279, 936],
+  [1245, 808],
+  [592, 720],
+  [1005, 818],
+  [1723, 775],
+  [1025, 990],
+  [1154, 829],
+  [1063, 599],
+  [1447, 911],
+  [362, 787],
+  [1321, 827],
+  [1681, 837],
+  [1038, 948],
+  [1434, 842],
+  [1650, 1028],
+  [684, 1169],
+  [1764, 750],
+  [1409, 881],
+  [1301, 839],
+  [1247, 1065],
+  [778, 1065]
+];
+
+// src/seven-seals.css
+var seven_seals_default = `/* Panel is a fixed overlay inside the widget shadow root, so it can be wider
+   than the 256px widget without changing the widget layout. */
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483000;
+  width: 0;
+  height: 0;
+}
+
+.seals {
+  /* Clear the widget itself so both stay usable. */
+  position: fixed;
+  bottom: 118px;
+  left: 268px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Never let the top edge leave the viewport on short windows. */
+  width: min(620px, calc(100vw - 292px));
+  max-height: min(76vh, 720px, calc(100vh - 140px));
+  border: var(--text) 2px solid;
+  background-color: var(--background);
+  box-shadow: 0 8px 16px -8px var(--main);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.seals[hidden] {
+  display: none;
+}
+
+.seals header {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  padding: 6px 8px;
+  border-bottom: var(--text) 2px solid;
+  background-color: var(--main);
+}
+
+.seals .title {
+  border: none;
+  background: none;
+  font-size: 20px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.seals .sub {
+  font-size: 14px;
+}
+
+.seals .spacer {
+  flex: 1;
+}
+
+.seals button {
+  padding: 4px 8px;
+  border: var(--text) 2px solid;
+  border-radius: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.seals button:hover:not(:disabled) {
+  background-color: var(--background-hover);
+}
+
+.seals button:disabled {
+  background-color: var(--background-disabled);
+  color: var(--text-invert);
+  cursor: no-drop;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 8px 4px;
+}
+
+.chip {
+  padding: 2px 8px;
+  font-size: 15px;
+}
+
+.chip[aria-pressed='true'] {
+  background-color: var(--main);
+}
+
+.chip[aria-pressed='true']:hover {
+  background-color: var(--main-hover);
+}
+
+.chip .n {
+  margin-left: 4px;
+}
+
+.tools {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0 8px 6px;
+}
+
+.tools .query {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 8px;
+  border: var(--text) 2px solid;
+  background-color: var(--background);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+
+.tools .query:hover {
+  background-color: var(--background-hover);
+}
+
+.only-label {
+  display: flex;
+  flex: none;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 8px;
+  border: var(--text) 2px solid;
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.only-label:hover {
+  background-color: var(--background-hover);
+}
+
+.only-label input {
+  width: 1em;
+  height: 1em;
+}
+
+.body {
+  overflow-y: auto;
+  padding: 0 8px 8px;
+  scrollbar-width: thin;
+}
+
+.seal {
+  margin-top: 8px;
+}
+
+.seal h3 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin: 0;
+  padding: 4px 0;
+  border-bottom: var(--text) 2px solid;
+  background-color: var(--background);
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.seal h3 .meta {
+  font-size: 14px;
+  text-transform: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 52px 56px 104px 1fr 52px 84px;
+  gap: 6px;
+  align-items: center;
+  padding: 2px 4px;
+}
+
+.row:hover {
+  background-color: var(--background-hover);
+}
+
+.row[hidden] {
+  display: none;
+}
+
+.row.st-locked {
+  opacity: 0.6;
+}
+
+.row.st-complete .id,
+.row.st-complete .tag {
+  color: var(--background-disabled);
+}
+
+.pill {
+  padding: 0 6px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.p-open {
+  background-color: var(--main);
+}
+
+.p-complete {
+  background-color: var(--background-hover);
+}
+
+.p-locked,
+.p-unknown {
+  background-color: var(--background-disabled);
+  color: var(--text-invert);
+}
+
+.bar {
+  height: 12px;
+  border: var(--text) 2px solid;
+  background-color: var(--background);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background-color: var(--main);
+}
+
+.pct {
+  text-align: right;
+}
+
+.act {
+  justify-self: end;
+}
+
+.act button {
+  padding: 2px 10px;
+  background-color: var(--main);
+  font-size: 15px;
+}
+
+.act button:hover:not(:disabled) {
+  background-color: var(--main-hover);
+}
+
+.row.imported .act {
+  font-size: 15px;
+}
+
+.empty {
+  padding: 12px 4px;
+}
+
+.seals footer {
+  overflow: hidden;
+  min-height: 26px;
+  padding: 4px 8px;
+  border-top: var(--text) 2px solid;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seals footer .err::before {
+  content: '! ';
+}
+`;
+
+// src/seven-seals.html
+var seven_seals_default2 = `<div class="seals" hidden>
+  <header>
+    <div class="headline">
+      <div class="title">+ Seven Seals</div>
+      <div class="sub">Live event status from wplace.live</div>
+    </div>
+    <div class="spacer"></div>
+    <button class="refresh">Refresh</button>
+    <button class="close" title="Close">x</button>
+  </header>
+  <div class="chips"></div>
+  <div class="tools">
+    <input class="query" type="search" placeholder="Filter: #123, IV, IV-7 …" />
+    <label class="only-label"><input class="only" type="checkbox" /> only importable</label>
+  </div>
+  <div class="body"></div>
+  <footer class="foot"></footer>
+</div>
+`;
+
+// src/seven-seals.ts
+var SEALS = ["I", "II", "III", "IV", "V", "VI", "VII"];
+var PER_SEAL = 24;
+var FRAGMENTS = SEALS.length * PER_SEAL;
+var ENDPOINT = "https://backend.wplace.live/seven-seals";
+var TEMPLATE = "/img/seven-seals/seal-";
+var TILE = 1000;
+var IMAGE_WIDTH = 1000;
+var IMAGE_HEIGHT = 2000;
+var STATUS_TEXT = {
+  open: "in progress",
+  locked: "not opened",
+  complete: "complete",
+  unknown: "unknown"
+};
+
+class SevenSeals extends Base2 {
+  bot;
+  $seals;
+  $sub;
+  $chips;
+  $query;
+  $only;
+  $body;
+  $foot;
+  $refresh;
+  $close;
+  payload = null;
+  model = [];
+  byId = new Map;
+  loading = false;
+  error = "";
+  updatedAt = 0;
+  query = "";
+  onlyImportable = false;
+  sealFilter = 0;
+  autoScrolled = false;
+  busy = new Set;
+  foot = null;
+  constructor(bot) {
+    super(seven_seals_default2, `${shared_default}
+${seven_seals_default}`);
+    this.bot = bot;
+    this.populateElementsWithSelector({
+      $seals: ".seals",
+      $sub: ".sub",
+      $chips: ".chips",
+      $query: ".query",
+      $only: ".only",
+      $body: ".body",
+      $foot: ".foot",
+      $refresh: ".refresh",
+      $close: ".close"
+    });
+    this.registerEvent(this.$refresh, "click", () => void this.refresh());
+    this.registerEvent(this.$close, "click", () => this.hide());
+    this.registerEvent(this.$query, "input", () => {
+      this.query = this.$query.value.trim();
+      this.render();
+    });
+    this.registerEvent(this.$only, "change", () => {
+      this.onlyImportable = this.$only.checked;
+      this.render();
+    });
+    this.registerEvent(this.$chips, "click", (event) => {
+      const chip = event.target?.closest("[data-seal]");
+      if (!chip)
+        return;
+      const seal = Number(chip.dataset.seal) || 0;
+      this.sealFilter = this.sealFilter === seal ? 0 : seal;
+      this.render();
+    });
+    this.registerEvent(this.$body, "click", (event) => {
+      const button = event.target?.closest("[data-import]");
+      if (!button)
+        return;
+      this.import(Number(button.dataset.import));
+    });
+    this.registerEvent(this.shadow, "keydown", (event) => {
+      if (event.key === "Escape")
+        this.hide();
+    });
+  }
+  get opened() {
+    return !this.$seals.hidden;
+  }
+  show() {
+    this.$seals.hidden = false;
+    this.$query.focus();
+    if (this.model.length === 0 && !this.loading)
+      this.refresh();
+    else
+      this.render();
+  }
+  hide() {
+    this.$seals.hidden = true;
+  }
+  toggle() {
+    if (this.opened)
+      this.hide();
+    else
+      this.show();
+  }
+  static sealOf(id) {
+    return Math.min(SEALS.length, Math.max(1, Math.ceil(id / PER_SEAL)));
+  }
+  static fragmentOf(id) {
+    return (id - 1) % PER_SEAL + 1;
+  }
+  static imageName(id) {
+    return `Seven Seals ${SevenSeals.sealOf(id)}-${SevenSeals.fragmentOf(id)} (#${id})`;
+  }
+  static statusOf(copy, now) {
+    if (!copy)
+      return "unknown";
+    if (copy.completedAt || copy.paintedPixels >= copy.totalPixels)
+      return "complete";
+    if (new Date(copy.opensAt).getTime() > now)
+      return "locked";
+    return "open";
+  }
+  isImported(id) {
+    const name = SevenSeals.imageName(id);
+    return this.bot.images.some((image) => image.name === name);
+  }
+  buildModel(payload, now) {
+    this.byId.clear();
+    for (const copy of payload.copies)
+      this.byId.set(copy.index, copy);
+    const model = [];
+    for (let seal = 1;seal <= SEALS.length; seal++) {
+      const numeral = SEALS[seal - 1] ?? "";
+      const fragments = [];
+      for (let n = 1;n <= PER_SEAL; n++) {
+        const id = (seal - 1) * PER_SEAL + n;
+        const copy = this.byId.get(id) ?? null;
+        const total = copy?.totalPixels ?? 0;
+        const painted = copy?.paintedPixels ?? 0;
+        fragments.push({
+          id,
+          seal,
+          numeral,
+          n,
+          copy,
+          status: SevenSeals.statusOf(copy, now),
+          progress: total > 0 ? Math.min(1, painted / total) : 0,
+          remaining: Math.max(0, total - painted),
+          imported: this.isImported(id)
+        });
+      }
+      model.push({ seal, numeral, fragments });
+    }
+    this.model = model;
+  }
+  counts() {
+    let open = 0;
+    let locked = 0;
+    let complete = 0;
+    let unknown = 0;
+    let imported = 0;
+    for (const group of this.model)
+      for (const fragment of group.fragments) {
+        if (fragment.status === "open")
+          open++;
+        else if (fragment.status === "locked")
+          locked++;
+        else if (fragment.status === "complete")
+          complete++;
+        else
+          unknown++;
+        if (fragment.imported)
+          imported++;
+      }
+    return { open, locked, complete, unknown, imported, total: FRAGMENTS };
+  }
+  static importable(group) {
+    let count = 0;
+    for (const fragment of group.fragments)
+      if (fragment.status === "open" && !fragment.imported)
+        count++;
+    return count;
+  }
+  static pixels(value) {
+    if (!Number.isFinite(value))
+      return "?";
+    if (value >= 1e6)
+      return `${(value / 1e6).toFixed(2)}M`;
+    if (value >= 1000)
+      return `${(value / 1000).toFixed(1)}k`;
+    return String(value);
+  }
+  static eventWindow(payload) {
+    if (!payload)
+      return "";
+    const format = (value) => {
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? "" : date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    };
+    const from = format(payload.startsAt);
+    const to = format(payload.endsAt);
+    return from && to ? `${from} – ${to}` : "";
+  }
+  static ago(timestamp) {
+    if (!timestamp)
+      return "";
+    const seconds = Math.max(0, Math.round((Date.now() - timestamp) / 1000));
+    if (seconds < 5)
+      return "just now";
+    if (seconds < 60)
+      return `${seconds}s ago`;
+    return `${Math.round(seconds / 60)}m ago`;
+  }
+  static element(tag, className = "", text) {
+    const element = document.createElement(tag);
+    if (className)
+      element.className = className;
+    if (text !== undefined)
+      element.textContent = text;
+    return element;
+  }
+  async refresh() {
+    if (this.loading)
+      return;
+    this.loading = true;
+    this.error = "";
+    this.foot = null;
+    this.render();
+    try {
+      const response = await fetch(ENDPOINT, {
+        credentials: "include",
+        cache: "no-store"
+      });
+      if (!response.ok)
+        throw new Error(`Event API HTTP ${response.status}`);
+      const payload = await response.json();
+      if (!Array.isArray(payload.copies))
+        throw new Error("Unexpected event response");
+      this.payload = payload;
+      this.buildModel(payload, Date.now());
+      this.updatedAt = Date.now();
+    } catch (error) {
+      this.error = error instanceof Error ? error.message : String(error);
+      console.error("[Seven Seals]", error);
+    } finally {
+      this.loading = false;
+      this.render();
+      if (!this.autoScrolled && this.model.length > 0) {
+        this.autoScrolled = true;
+        this.scrollToFirstImportable();
+      }
+    }
+  }
+  scrollToFirstImportable() {
+    if (this.sealFilter || this.query || this.onlyImportable)
+      return;
+    const first = this.model.find((group) => SevenSeals.importable(group) > 0);
+    if (!first)
+      return;
+    const section = this.$body.querySelector(`.seal[data-seal="${first.seal}"]`);
+    try {
+      section?.scrollIntoView({ block: "start" });
+    } catch {}
+  }
+  filterMatch(fragment) {
+    if (this.sealFilter && fragment.seal !== this.sealFilter)
+      return false;
+    if (this.onlyImportable && (fragment.status !== "open" || fragment.imported))
+      return false;
+    const query = this.query.toLowerCase();
+    if (!query)
+      return true;
+    const haystack = [
+      `#${fragment.id}`,
+      String(fragment.id),
+      fragment.numeral,
+      `${fragment.numeral}-${fragment.n}`,
+      `${fragment.numeral} ${fragment.n}`,
+      SevenSeals.imageName(fragment.id)
+    ].join(" ").toLowerCase();
+    return query.split(/\s+/).every((token) => haystack.includes(token));
+  }
+  renderRow(fragment) {
+    const row = SevenSeals.element("div", `row st-${fragment.status}`);
+    row.dataset.fragment = String(fragment.id);
+    if (fragment.imported)
+      row.classList.add("imported");
+    row.append(SevenSeals.element("span", "id", `#${fragment.id}`), SevenSeals.element("span", "tag", `${fragment.numeral}-${fragment.n}`));
+    const pill = SevenSeals.element("span", `pill p-${fragment.status}`, STATUS_TEXT[fragment.status]);
+    row.append(pill);
+    const bar = SevenSeals.element("div", "bar");
+    const fill = document.createElement("i");
+    fill.style.width = `${Math.round(fragment.progress * 100)}%`;
+    bar.append(fill);
+    row.append(bar);
+    row.append(SevenSeals.element("span", "pct", `${Math.round(fragment.progress * 100)}%`));
+    const action = SevenSeals.element("div", "act");
+    if (fragment.imported) {
+      action.textContent = "imported";
+    } else if (fragment.status === "open") {
+      const busy = this.busy.has(fragment.id);
+      const button = SevenSeals.element("button", "", busy ? "…" : "Import");
+      button.type = "button";
+      button.dataset.import = String(fragment.id);
+      button.disabled = busy;
+      button.title = `Seal ${fragment.numeral}, fragment ${fragment.n} · ` + `${SevenSeals.pixels(fragment.remaining)} pixels left`;
+      action.append(button);
+    } else if (fragment.status === "locked" && fragment.copy) {
+      action.textContent = "locked";
+      action.title = `Opens ${new Date(fragment.copy.opensAt).toLocaleString()}`;
+    } else {
+      action.textContent = "—";
+    }
+    row.append(action);
+    return row;
+  }
+  renderChips() {
+    this.$chips.textContent = "";
+    if (this.model.length === 0)
+      return;
+    const counts = this.counts();
+    const make = (value, label, note) => {
+      const chip = SevenSeals.element("button", "chip", label);
+      chip.type = "button";
+      chip.dataset.seal = String(value);
+      chip.setAttribute("aria-pressed", String(this.sealFilter === value));
+      chip.append(SevenSeals.element("span", "n", note));
+      this.$chips.append(chip);
+    };
+    make(0, "All seal series", `${counts.open} open`);
+    for (const group of this.model)
+      make(group.seal, group.numeral, String(SevenSeals.importable(group)));
+  }
+  renderBody() {
+    this.$body.textContent = "";
+    if (this.model.length === 0) {
+      this.$body.append(SevenSeals.element("div", "empty", this.loading ? "Loading event data…" : ""));
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    let visible = 0;
+    for (const group of this.model) {
+      if (this.sealFilter && group.seal !== this.sealFilter)
+        continue;
+      const rows = [];
+      for (const item of group.fragments) {
+        const row = this.renderRow(item);
+        if (this.filterMatch(item))
+          visible++;
+        else
+          row.hidden = true;
+        rows.push(row);
+      }
+      const section = SevenSeals.element("section", "seal");
+      section.dataset.seal = String(group.seal);
+      const title = SevenSeals.element("h3", "", `Seal ${group.numeral}`);
+      const firstId = (group.seal - 1) * PER_SEAL + 1;
+      const lastId = group.seal * PER_SEAL;
+      title.append(SevenSeals.element("span", "meta", `fragments ${firstId}–${lastId} · ${SevenSeals.importable(group)} importable`));
+      section.append(title, ...rows);
+      fragment.append(section);
+    }
+    if (visible === 0)
+      fragment.append(SevenSeals.element("div", "empty", "No fragment matches the filter."));
+    this.$body.append(fragment);
+  }
+  renderFoot() {
+    this.$foot.textContent = "";
+    if (this.foot) {
+      this.$foot.append(SevenSeals.element("span", this.foot.ok ? "" : "err", this.foot.text));
+      return;
+    }
+    if (this.error) {
+      this.$foot.append(SevenSeals.element("span", "err", `Error: ${this.error}`));
+      return;
+    }
+    if (this.model.length === 0) {
+      this.$foot.append(SevenSeals.element("span", "", this.loading ? "Fetching event…" : "Idle."));
+      return;
+    }
+    const counts = this.counts();
+    const window2 = SevenSeals.eventWindow(this.payload);
+    this.$foot.append(SevenSeals.element("span", "", `${counts.total} fragments · ${counts.open} open · ${counts.complete} complete · ` + `${counts.locked} locked · ${counts.imported} imported` + (window2 ? ` · ${window2}` : "") + (this.updatedAt ? ` · updated ${SevenSeals.ago(this.updatedAt)}` : "")));
+  }
+  render() {
+    this.renderChips();
+    this.renderBody();
+    this.renderFoot();
+    const counts = this.model.length > 0 ? this.counts() : null;
+    this.$sub.textContent = counts ? `${counts.open} open fragment${counts.open === 1 ? "" : "s"} · ` + `${SEALS.length} seals × ${PER_SEAL} fragments` : "Live event status from wplace.live";
+  }
+  async import(id) {
+    if (!Number.isInteger(id) || id < 1 || id > FRAGMENTS)
+      return;
+    if (this.busy.has(id))
+      return;
+    const position = SEVEN_SEALS_POSITIONS[id - 1];
+    if (!position) {
+      this.foot = { ok: false, text: `No known position for fragment #${id}.` };
+      this.render();
+      return;
+    }
+    const name = SevenSeals.imageName(id);
+    if (this.isImported(id)) {
+      this.foot = { ok: false, text: `${name} is already imported.` };
+      this.render();
+      return;
+    }
+    const seal = SevenSeals.sealOf(id);
+    this.busy.add(id);
+    this.foot = { ok: true, text: `Importing ${name}…` };
+    this.render();
+    try {
+      const image = await BotImage.fromJSON(this.bot, {
+        url: `${location.origin}${TEMPLATE}${seal}.png`,
+        position: [position[0] * TILE, position[1] * TILE],
+        width: IMAGE_WIDTH,
+        brightness: 0,
+        strategy: "SPIRAL_TO_CENTER" /* SPIRAL_TO_CENTER */,
+        opacity: 50,
+        drawColorsInOrder: false,
+        colors: [],
+        disabledColors: [0],
+        lock: true,
+        disabled: false,
+        name,
+        unownedColorStrategy: "BUY" /* BUY */
+      });
+      if (image.width !== IMAGE_WIDTH || image.height !== IMAGE_HEIGHT) {
+        image.destroy();
+        throw new Error(`Unexpected template dimensions: ${image.width}x${image.height}`);
+      }
+      await save(this.bot);
+      const fragment = this.model.flatMap((group) => group.fragments).find((item) => item.id === id);
+      this.foot = {
+        ok: true,
+        text: `Imported ${name} — Seal ${SEALS[seal - 1] ?? ""}, ` + `fragment ${SevenSeals.fragmentOf(id)}` + (fragment ? `, ${SevenSeals.pixels(fragment.remaining)} pixels left` : "") + ". Move the map there, then Draw or Auto-Draw."
+      };
+      if (this.payload)
+        this.buildModel(this.payload, Date.now());
+    } catch (error) {
+      this.foot = {
+        ok: false,
+        text: `Import failed: ${error instanceof Error ? error.message : String(error)}`
+      };
+      console.error("[Seven Seals]", error);
+    } finally {
+      this.busy.delete(id);
+      this.render();
+    }
+  }
+}
+
 // src/widget.css
 var widget_default = `:host {
   position: fixed;
@@ -2189,6 +3117,7 @@ var widget_default2 = `<button class="open-button"><div>></div></button>
     </select></label
   >
   <button class="add-image" disabled>Add image</button>
+  <button class="seven-seals" disabled>Seven Seals</button>
   <!-- <button class="pumpkin-hunt" disabled>Pumpkin Hunt!</button> -->
   <div class="images"></div>
 </div>
@@ -2216,12 +3145,14 @@ class Widget extends Base2 {
   $title;
   $draw;
   $addImage;
+  $sevenSeals;
   $strategy;
   $progressLine;
   $progressText;
   $images;
   $openButton;
   $autoDraw;
+  sevenSeals;
   constructor(bot) {
     super(widget_default2, `${shared_default}
 ${widget_default}`);
@@ -2235,6 +3166,7 @@ ${widget_default}`);
       $title: ".title",
       $draw: ".draw",
       $addImage: ".add-image",
+      $sevenSeals: ".seven-seals",
       $strategy: ".strategy",
       $progressLine: ".progress div",
       $progressText: ".progress span",
@@ -2249,6 +3181,8 @@ ${widget_default}`);
     this.bot.fixSpaceInInput(this.$title);
     this.$draw.addEventListener("click", () => this.bot.draw());
     this.$addImage.addEventListener("click", () => this.addImage());
+    this.sevenSeals = new SevenSeals(bot);
+    this.$sevenSeals.addEventListener("click", () => this.sevenSeals.toggle());
     this.$strategy.addEventListener("change", () => {
       this.bot.strategy = this.$strategy.value;
       save(this.bot);
@@ -2442,6 +3376,7 @@ class WPlaceBot {
       bot.widget.setDisabled("draw", false);
       bot.widget.setDisabled("auto-draw", false);
       bot.widget.setDisabled("add-image", false);
+      bot.widget.setDisabled("seven-seals", false);
     }).catch(async (error) => {
       if (!window.confirm(`WPlace-bot couldn't load!
 Do you want to DELETE ALL DATA to fix it?
