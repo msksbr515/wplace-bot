@@ -1,6 +1,6 @@
 # Wplace-bot — with Seven Seals support
 
-## [**⬇ 一鍵安裝 / One-click install**](https://raw.githubusercontent.com/msksbr515/wplace-bot/seven-seals/dist.user.js)
+## [**⬇ 一鍵安裝 / One-click install**](https://github.com/msksbr515/wplace-bot/releases/latest/download/dist.user.js)
 
 *(needs Tampermonkey first — see [Install](#install) below)*
 
@@ -15,7 +15,7 @@
 ## Install
 
 1. Install the TamperMonkey browser extension: [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)|[Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
-2. **[Open this link](https://raw.githubusercontent.com/msksbr515/wplace-bot/seven-seals/dist.user.js)** — same URL Tampermonkey uses to keep it updated
+2. **[Open this link](https://github.com/msksbr515/wplace-bot/releases/latest/download/dist.user.js)** — same URL Tampermonkey uses to keep it updated
 3. Press install
 4. Allow user scripts
    1. Chrome: Settings > Extensions > Manage Extensions > Tampermonkey > Details > Allow User Scripts
