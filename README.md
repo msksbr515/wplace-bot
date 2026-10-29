@@ -36,7 +36,7 @@ newer than the official release.
 
 ## The Seven Seals importer
 
-Open it from the new **Seven Seals** button in the bot panel. The event has 7 seals
+Open it from the new **Seven Seals** button in the bot panel, or from the floating **+ Seven Seals** button in the bottom-left corner — that one also works when the bot panel is covered by another copy of the bot, or while the bot is still initialising. The event has 7 seals
 (`I` … `VII`) of 24 fragments each, 168 in total, and the panel lists every fragment grouped
 under its seal so you can tell which series a fragment belongs to instead of typing a raw id.
 
